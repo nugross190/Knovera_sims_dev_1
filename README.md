@@ -1,7 +1,3 @@
-# knovera-item-exam-prototype
-A progress checker on my knovera progres
-# Exam Engine Logic Flow
-
 Here is the visual logic map for the Knovera Exam Runner:
 
 ```mermaid
