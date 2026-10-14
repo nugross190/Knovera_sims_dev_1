@@ -1,0 +1,47 @@
+{
+  "id": "L2-2",
+  "level": 2,
+  "mode": "graph",
+  "title": "Up and over: graphs",
+  "bounds": { "xMin": -50, "xMax": 80, "yMin": -40, "yMax": 130 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [0, 40],
+    "g": [0, 80],
+    "F": [60, 80],
+    "b": [0, -20],
+    "c": [60, -20],
+    "h": [60, 40],
+    "i": [-30, 40],
+    "j": [-30, 110],
+    "k": [60, 110]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "g"],
+    ["g", "F"],
+    ["S", "b"],
+    ["b", "c"],
+    ["c", "h"],
+    ["h", "F"],
+    ["a", "i"],
+    ["i", "j"],
+    ["j", "k"],
+    ["k", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 20,
+      "calibrationSeconds": 3,
+      "route": ["S", "a", "g", "F"]
+    },
+    "B": {
+      "speed": 10,
+      "calibrationSeconds": 3,
+      "route": ["S", "b", "c", "h", "F"]
+    }
+  },
+  "prompt": "Robot B's y-t graph went below zero, but its distance-t graph never went down. Why?"
+}

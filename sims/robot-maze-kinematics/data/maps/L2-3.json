@@ -1,0 +1,45 @@
+{
+  "id": "L2-3",
+  "level": 2,
+  "mode": "path",
+  "title": "Two routes, two robots",
+  "bounds": { "xMin": -20, "xMax": 140, "yMin": -50, "yMax": 110 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "p": [30, 0],
+    "q": [30, 60],
+    "F": [90, 60],
+    "r": [0, 90],
+    "s": [90, 90],
+    "t": [0, -30],
+    "u": [120, -30],
+    "v": [120, 60]
+  },
+  "edges": [
+    ["S", "p"],
+    ["p", "q"],
+    ["q", "F"],
+    ["S", "r"],
+    ["r", "s"],
+    ["s", "F"],
+    ["S", "t"],
+    ["t", "u"],
+    ["u", "v"],
+    ["v", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 10,
+      "calibrationSeconds": 4,
+      "route": null
+    },
+    "B": {
+      "speed": 30,
+      "calibrationSeconds": 2,
+      "route": null
+    }
+  },
+  "prompt": "Robot B turned out to be three times faster than Robot A. If you wanted both robots to arrive as early as possible, which one should take the shortest route? Why?"
+}

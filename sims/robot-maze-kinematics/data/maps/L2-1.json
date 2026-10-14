@@ -1,0 +1,45 @@
+{
+  "id": "L2-1",
+  "level": 2,
+  "mode": "measurement",
+  "title": "Downhill finish",
+  "bounds": { "xMin": -20, "xMax": 130, "yMin": -100, "yMax": 50 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [80, 0],
+    "F": [80, -60],
+    "b": [0, -80],
+    "c": [80, -80],
+    "e": [0, 30],
+    "g": [110, 30],
+    "h": [110, -60]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "F"],
+    ["S", "b"],
+    ["b", "c"],
+    ["c", "F"],
+    ["S", "e"],
+    ["e", "g"],
+    ["g", "h"],
+    ["h", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 30,
+      "calibrationSeconds": 3,
+      "route": ["S", "b", "c", "F"],
+      "highlightLeg": 1
+    },
+    "B": {
+      "speed": 20,
+      "calibrationSeconds": 2,
+      "route": ["S", "a", "F"],
+      "highlightLeg": 2
+    }
+  },
+  "prompt": "Robot A drove 40 cm further than Robot B but arrived first. Compare their average speeds and their average velocities."
+}

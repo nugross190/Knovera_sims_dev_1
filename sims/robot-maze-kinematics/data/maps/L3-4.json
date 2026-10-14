@@ -1,0 +1,39 @@
+{
+  "id": "L3-4",
+  "level": 3,
+  "mode": "combined",
+  "title": "Straight line",
+  "bounds": { "xMin": -110, "xMax": 50, "yMin": -20, "yMax": 170 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "F": [-90, 120],
+    "b": [0, 120],
+    "c": [30, 0],
+    "d": [30, 150],
+    "e": [-90, 150]
+  },
+  "edges": [
+    ["S", "F"],
+    ["S", "b"],
+    ["b", "F"],
+    ["S", "c"],
+    ["c", "d"],
+    ["d", "e"],
+    ["e", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 30,
+      "calibrationSeconds": 3,
+      "route": null
+    },
+    "B": {
+      "speed": 10,
+      "calibrationSeconds": 4,
+      "route": null
+    }
+  },
+  "prompt": "One route was a single straight line. On that route, how did the size of the average velocity compare with the speed? Why is it different on the other routes?"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "L3-2",
+  "level": 3,
+  "mode": "path",
+  "title": "Tempting diagonal",
+  "bounds": { "xMin": -20, "xMax": 140, "yMin": -20, "yMax": 140 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [90, 0],
+    "p": [120, 40],
+    "F": [120, 80],
+    "d": [60, 80],
+    "e": [60, 120],
+    "f": [120, 120],
+    "g": [0, 80]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "p"],
+    ["p", "F"],
+    ["S", "d"],
+    ["d", "e"],
+    ["e", "f"],
+    ["f", "F"],
+    ["S", "g"],
+    ["g", "d"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 20,
+      "calibrationSeconds": 3,
+      "route": null
+    },
+    "B": {
+      "speed": 10,
+      "calibrationSeconds": 4,
+      "route": null
+    }
+  },
+  "prompt": "The long diagonal pointed straight at the finish. Was it on the shortest route? What did you have to calculate to find out?"
+}

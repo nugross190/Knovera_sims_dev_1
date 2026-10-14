@@ -1,0 +1,43 @@
+{
+  "id": "L3-1",
+  "level": 3,
+  "mode": "measurement",
+  "title": "First diagonal",
+  "bounds": { "xMin": -20, "xMax": 110, "yMin": -20, "yMax": 100 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [0, 40],
+    "g": [0, 80],
+    "b": [30, 80],
+    "F": [60, 80],
+    "d": [90, 0],
+    "e": [90, 80]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "g"],
+    ["g", "b"],
+    ["b", "F"],
+    ["a", "b"],
+    ["S", "d"],
+    ["d", "e"],
+    ["e", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 20,
+      "calibrationSeconds": 3,
+      "route": ["S", "a", "b", "F"],
+      "highlightLeg": 1
+    },
+    "B": {
+      "speed": 10,
+      "calibrationSeconds": 3,
+      "route": ["S", "a", "g", "b", "F"],
+      "highlightLeg": 1
+    }
+  },
+  "prompt": "Robot A's diagonal leg was 50 cm long but moved it only 30 cm in x and 40 cm in y. Did its speed change on that leg? Did its velocity?"
+}

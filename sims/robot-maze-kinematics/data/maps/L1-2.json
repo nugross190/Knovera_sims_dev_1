@@ -1,0 +1,43 @@
+{
+  "id": "L1-2",
+  "level": 1,
+  "mode": "measurement",
+  "title": "The long way round",
+  "bounds": { "xMin": -20, "xMax": 120, "yMin": -20, "yMax": 110 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "p": [80, 0],
+    "F": [80, 60],
+    "q": [0, 90],
+    "x": [80, 90],
+    "u": [100, 90],
+    "v": [100, 60]
+  },
+  "edges": [
+    ["S", "p"],
+    ["p", "F"],
+    ["S", "q"],
+    ["q", "x"],
+    ["x", "F"],
+    ["x", "u"],
+    ["u", "v"],
+    ["v", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 10,
+      "calibrationSeconds": 4,
+      "route": ["S", "p", "F"],
+      "highlightLeg": 2
+    },
+    "B": {
+      "speed": 30,
+      "calibrationSeconds": 2,
+      "route": ["S", "q", "x", "u", "v", "F"],
+      "highlightLeg": 4
+    }
+  },
+  "prompt": "Robot B drove the longer route but finished first. Use your answers to explain how."
+}
