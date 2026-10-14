@@ -1,0 +1,45 @@
+{
+  "id": "L1-3",
+  "level": 1,
+  "mode": "path",
+  "title": "Staircase",
+  "bounds": { "xMin": -20, "xMax": 110, "yMin": -20, "yMax": 110 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "c1": [0, 30],
+    "c2": [30, 30],
+    "c6": [30, 60],
+    "c3": [30, 90],
+    "c4": [60, 90],
+    "F": [60, 60],
+    "d1": [90, 0],
+    "d3": [90, 90]
+  },
+  "edges": [
+    ["S", "c1"],
+    ["c1", "c2"],
+    ["c2", "c6"],
+    ["c6", "c3"],
+    ["c6", "F"],
+    ["c3", "c4"],
+    ["c4", "F"],
+    ["S", "d1"],
+    ["d1", "d3"],
+    ["d3", "c4"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 30,
+      "calibrationSeconds": 3,
+      "route": null
+    },
+    "B": {
+      "speed": 20,
+      "calibrationSeconds": 2,
+      "route": ["S", "d1", "d3", "c4", "c3", "c6", "F"]
+    }
+  },
+  "prompt": "Robot A's speed never changed, but its velocity changed at every corner. Explain how both can be true."
+}

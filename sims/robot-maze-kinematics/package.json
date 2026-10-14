@@ -1,0 +1,12 @@
+{
+  "name": "robot-maze-kinematics",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser sandbox where students analyse two robots moving through a maze.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "validate": "node tools/validate-maps.mjs",
+    "serve": "npx http-server -c-1 -p 8080 ."
+  }
+}

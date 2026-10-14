@@ -1,0 +1,47 @@
+{
+  "id": "L1-4",
+  "level": 1,
+  "mode": "measurement",
+  "title": "Back to the left",
+  "bounds": { "xMin": -90, "xMax": 50, "yMin": -40, "yMax": 110 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [0, 60],
+    "F": [-40, 60],
+    "c": [30, 0],
+    "d": [30, 90],
+    "e": [-40, 90],
+    "f": [0, -20],
+    "g": [-70, -20],
+    "h": [-70, 60]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "F"],
+    ["S", "c"],
+    ["c", "d"],
+    ["d", "e"],
+    ["e", "F"],
+    ["S", "f"],
+    ["f", "g"],
+    ["g", "h"],
+    ["h", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 10,
+      "calibrationSeconds": 2,
+      "route": ["S", "f", "g", "h", "F"],
+      "highlightLeg": 2
+    },
+    "B": {
+      "speed": 20,
+      "calibrationSeconds": 4,
+      "route": ["S", "c", "d", "e", "F"],
+      "highlightLeg": 4
+    }
+  },
+  "prompt": "Both robots travelled 200 cm or more, yet each ended only about 72 cm from Start. What does the displacement tell you that the distance does not?"
+}

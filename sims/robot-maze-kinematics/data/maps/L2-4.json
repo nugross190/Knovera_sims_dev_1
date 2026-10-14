@@ -1,0 +1,45 @@
+{
+  "id": "L2-4",
+  "level": 2,
+  "mode": "combined",
+  "title": "Full analysis",
+  "bounds": { "xMin": -20, "xMax": 120, "yMin": -40, "yMax": 100 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [20, 0],
+    "b": [20, 40],
+    "F": [60, 40],
+    "c": [0, 80],
+    "d": [60, 80],
+    "e": [0, -20],
+    "f": [100, -20],
+    "g": [100, 40]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "b"],
+    ["b", "F"],
+    ["S", "c"],
+    ["c", "d"],
+    ["d", "F"],
+    ["S", "e"],
+    ["e", "f"],
+    ["f", "g"],
+    ["g", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 10,
+      "calibrationSeconds": 3,
+      "route": null
+    },
+    "B": {
+      "speed": 20,
+      "calibrationSeconds": 4,
+      "route": null
+    }
+  },
+  "prompt": "Both robots ended at (60, 40) cm. Use your graphs to explain why their x-t graphs end at the same height but at different times."
+}

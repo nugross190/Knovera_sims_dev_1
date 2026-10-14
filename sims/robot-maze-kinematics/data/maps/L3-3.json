@@ -1,0 +1,39 @@
+{
+  "id": "L3-3",
+  "level": 3,
+  "mode": "graph",
+  "title": "Diagonal graphs",
+  "bounds": { "xMin": -20, "xMax": 80, "yMin": -20, "yMax": 160 },
+  "start": "S",
+  "finish": "F",
+  "nodes": {
+    "S": [0, 0],
+    "a": [0, 40],
+    "F": [60, 120],
+    "c": [60, 0],
+    "h": [0, 140],
+    "i": [60, 140]
+  },
+  "edges": [
+    ["S", "a"],
+    ["a", "F"],
+    ["S", "c"],
+    ["c", "F"],
+    ["a", "h"],
+    ["h", "i"],
+    ["i", "F"]
+  ],
+  "robots": {
+    "A": {
+      "speed": 10,
+      "calibrationSeconds": 3,
+      "route": ["S", "c", "F"]
+    },
+    "B": {
+      "speed": 20,
+      "calibrationSeconds": 3,
+      "route": ["S", "a", "F"]
+    }
+  },
+  "prompt": "On the diagonal leg Robot B's x and y both changed at once. How does that show up in its x-t and y-t graphs?"
+}

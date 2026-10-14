@@ -1,0 +1,22 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "title": "Distance and displacement",
+      "summary": "Speed, velocity on a leg, distance and displacement on axis-aligned routes.",
+      "maps": ["L1-1", "L1-2", "L1-3", "L1-4"]
+    },
+    {
+      "level": 2,
+      "title": "Time, averages and graphs",
+      "summary": "Total time, average speed and velocity, and x-t, y-t and distance-t graphs.",
+      "maps": ["L2-1", "L2-2", "L2-3", "L2-4"]
+    },
+    {
+      "level": 3,
+      "title": "Diagonals",
+      "summary": "Diagonal legs from the 3-4-5 family, solved with Pythagoras.",
+      "maps": ["L3-1", "L3-2", "L3-3", "L3-4"]
+    }
+  ]
+}
