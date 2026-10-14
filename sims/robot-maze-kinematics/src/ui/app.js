@@ -41,6 +41,7 @@ function renderHome() {
     h(
       'header',
       { class: 'site-header' },
+      h('a', { href: '../../', class: 'back-link' }, '← All sims'),
       h('h1', {}, 'Robot Maze Kinematics'),
       h('p', { class: 'lede' }, 'Two robots, one finish. Choose routes, measure, predict and sketch graphs, then run the robots and check your physics.'),
     ),

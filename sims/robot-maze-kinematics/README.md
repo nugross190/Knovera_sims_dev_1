@@ -6,14 +6,13 @@ A browser-based physics sandbox where students analyse how robots move through a
 
 ## Run it
 
-The page loads its maps as JSON, so it has to be served rather than opened from disk:
+The page loads its maps as JSON, so it has to be served rather than opened from disk. Serve the repo root so the "All sims" link back to the main menu works:
 
 ```sh
-cd sims/robot-maze-kinematics
-npm run serve            # or: python3 -m http.server 8080
+python3 -m http.server 8080      # from the repo root
 ```
 
-Then open <http://localhost:8080>. There is no build step and no dependencies.
+Then open <http://localhost:8080/sims/robot-maze-kinematics/>. There is no build step and no dependencies. Published, it lives at the same path under the GitHub Pages site.
 
 ```sh
 npm test                 # core logic, checked against the spec's worked examples

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Physics Sims</title>
+    <meta name="description" content="Interactive physics simulations for the classroom." />
+    <style>
+      :root {
+        --bg: #f6f7f9;
+        --surface: #ffffff;
+        --surface-2: #eef1f5;
+        --text: #1b2330;
+        --muted: #5d6878;
+        --border: #d8dee7;
+        --accent: #1f6feb;
+        --accent-text: #ffffff;
+        --robot-a: #1f6feb;
+        --robot-b: #d9480f;
+        --wall: #2b3442;
+        --corridor: #f3efe4;
+        --start: #1a7f37;
+        --finish: #cf222e;
+        --radius: 12px;
+        --shadow: 0 1px 2px rgba(20, 30, 50, 0.06), 0 2px 8px rgba(20, 30, 50, 0.05);
+        color-scheme: light;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #0f1419;
+          --surface: #171d25;
+          --surface-2: #1f2731;
+          --text: #e6ebf1;
+          --muted: #97a3b3;
+          --border: #2c3643;
+          --accent: #4c8dff;
+          --robot-a: #4c8dff;
+          --robot-b: #ff7a3d;
+          --wall: #0a0d12;
+          --corridor: #3a4350;
+          --start: #3fb950;
+          --finish: #ff6b6b;
+          color-scheme: dark;
+        }
+      }
+
+      :root[data-theme='dark'] {
+        --bg: #0f1419;
+        --surface: #171d25;
+        --surface-2: #1f2731;
+        --text: #e6ebf1;
+        --muted: #97a3b3;
+        --border: #2c3643;
+        --accent: #4c8dff;
+        --robot-a: #4c8dff;
+        --robot-b: #ff7a3d;
+        --wall: #0a0d12;
+        --corridor: #3a4350;
+        --start: #3fb950;
+        --finish: #ff6b6b;
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      .page {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 32px 16px 48px;
+      }
+
+      header h1 {
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
+        line-height: 1.15;
+        margin: 0 0 8px;
+      }
+
+      .lede {
+        color: var(--muted);
+        max-width: 60ch;
+        margin: 0 0 28px;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+        margin: 0 0 12px;
+      }
+
+      .sims {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      .sim-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        color: var(--text);
+        text-decoration: none;
+        transition: border-color 0.15s, transform 0.15s;
+      }
+
+      .sim-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .sim-card:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sim-card,
+        .sim-card:hover {
+          transition: none;
+          transform: none;
+        }
+      }
+
+      .thumb {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: var(--wall);
+      }
+
+      .sim-body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px 16px 16px;
+        flex: 1;
+      }
+
+      .sim-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .sim-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .badge {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        white-space: nowrap;
+      }
+
+      .sim-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .tags li {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+        border-radius: 6px;
+        background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+        color: var(--text);
+      }
+
+      .sim-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 6px;
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .start {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .soon {
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 24px;
+        color: var(--muted);
+        min-height: 180px;
+      }
+
+      .notes {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px 18px;
+      }
+
+      .notes ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .notes li + li {
+        margin-top: 4px;
+      }
+
+      /* Thumbnail drawing */
+      .thumb .wall {
+        fill: var(--wall);
+      }
+
+      .thumb .corridor {
+        stroke: var(--corridor);
+        stroke-width: 12;
+        stroke-linecap: round;
+        fill: none;
+      }
+
+      .thumb .route {
+        fill: none;
+        stroke-width: 3;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+
+      .thumb .route-a {
+        stroke: var(--robot-a);
+      }
+
+      .thumb .route-b {
+        stroke: var(--robot-b);
+        stroke-dasharray: 6 4;
+      }
+
+      .thumb text {
+        font: 700 9px system-ui, sans-serif;
+        fill: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Physics Sims</h1>
+        <p class="lede">Interactive simulations for physics classes. Choose a simulation to start.</p>
+      </header>
+
+      <main>
+        <h2>Simulations</h2>
+        <div class="sims">
+          <!-- One card per sim. Link to the sim's folder under sims/. -->
+          <a class="sim-card" href="sims/robot-maze-kinematics/">
+            <svg class="thumb" viewBox="0 0 320 150" role="img" aria-label="Two robot routes through a maze from Start to Finish">
+              <rect class="wall" width="320" height="150" />
+              <path class="corridor" d="M60 120 V40 H200 M60 120 H260 V40 H200 M60 120 V135 M200 40 V20 H120" />
+              <path class="route route-b" d="M63 123 H263 V43 H203" />
+              <path class="route route-a" d="M57 117 V37 H197" />
+              <circle cx="60" cy="120" r="8" fill="var(--start)" />
+              <text x="60" y="123" text-anchor="middle">S</text>
+              <rect x="192" y="32" width="16" height="16" rx="2" fill="var(--finish)" />
+              <text x="200" y="43" text-anchor="middle">F</text>
+            </svg>
+            <div class="sim-body">
+              <div class="sim-top">
+                <h3 class="sim-title">Robot Maze Kinematics</h3>
+                <span class="badge">Prototype</span>
+              </div>
+              <p class="sim-desc">Two robots, one finish. Choose routes, measure speed, predict the motion and sketch graphs, then run the robots and check your physics.</p>
+              <ul class="tags" aria-label="Topics">
+                <li>Distance &amp; displacement</li>
+                <li>Speed &amp; velocity</li>
+                <li>Motion graphs</li>
+              </ul>
+              <div class="sim-foot">
+                <span>3 levels · 12 maps</span>
+                <span class="start">Start →</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="soon">More simulations are on the way.</div>
+        </div>
+
+        <section class="notes" aria-labelledby="notes-title">
+          <h2 id="notes-title">Good to know</h2>
+          <ul>
+            <li>No login needed. Runs in a modern browser on a computer, tablet or phone.</li>
+            <li>Your progress is saved only in this browser on this device.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
