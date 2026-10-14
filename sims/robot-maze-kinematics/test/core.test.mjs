@@ -137,6 +137,9 @@ test('misconception labels', () => {
   assert.equal(res[5].label, 'Not a perfect square: use bentuk akar');
   const unitless = markRobot(truth, { 1: { value: '20', unit: '' } }, 1);
   assert.equal(unitless[1].label, 'Unit missing or wrong');
+  // Wrong speed and wrong sign: the sign is still named.
+  const both = markRobot(truth, sheet({ 1: 10, 2: [0, 10] }), 1);
+  assert.equal(both[2].label, 'Check the direction sign');
   const mixed = markRobot(truth, sheet({ 3: 72 }), 1);
   assert.equal(mixed[3].label, 'Distance and displacement mixed up');
 });

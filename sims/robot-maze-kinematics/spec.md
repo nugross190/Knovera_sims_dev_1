@@ -53,7 +53,7 @@ Every position is a grid point, so students can write a displacement vector from
 
 ## 3. Map design rules
 
-These rules are for whoever designs the maps; students never see them. They keep every answer clean enough for exact matching and every graph point on a snap grid. The map validator (`npm run validate`) checks rules 1-12 automatically.
+These rules are for whoever designs the maps; students never see them. They keep every answer clean enough for exact matching and every graph point on a snap grid. The map validator (`npm run validate`) checks them automatically: rules 1-12 on each map, and rules 13-14 across each level as warnings.
 
 1. **Grid.** All route points sit on integer cell coordinates (multiples of 10 cm).
 2. **Levels 1-2 legs.** Axis-aligned only (up, down, left, right).
@@ -144,7 +144,7 @@ The measurement sheet has five items per robot in Level 1 (10 per stage) and eig
 - Each item has a unit dropdown that starts blank and offers cm, cm/s, s and cm². A blank or wrong unit makes the item ✗.
 - Item 5 offers a choice between bilangan bulat (one box) and bentuk akar (a coefficient box and a radicand box, k√r, where k may be left empty for 1).
 
-**Highlighted leg (item 2).** On a preset route the map names the leg. On a student-chosen route the system highlights the first leg that points left or down, or leg 1 if there is none, so negative velocities come up whenever the route allows.
+**Highlighted leg (item 2).** On a preset route the map names the leg. On a student-chosen route the system highlights the first axis-aligned leg that points left or down, or the first axis-aligned leg if none does, so negative velocities come up whenever the route allows. A Level 3 route made only of diagonals (a single straight line) highlights its diagonal, solved by proportion.
 
 **Level 3 changes.** Item 3 now includes diagonal legs, whose lengths come from Pythagoras on the grid legs. Item 2 stays on axis-aligned legs by default. Asking for velocity on a diagonal leg is optional and uses proportion on the leg's own triple: each velocity component is speed × (leg component / hypotenuse), so leg (30, 40) at 20 cm/s gives (12, 16) cm/s. With the 3-4-5 family only, the result is always a whole number.
 

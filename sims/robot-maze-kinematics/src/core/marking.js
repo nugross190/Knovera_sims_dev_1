@@ -149,8 +149,12 @@ export function markRobot(truth, ans, level) {
           half = vecMatch(p[2], ownV, true);
         }
         if (!ok && !half && p[2].every(Boolean)) {
-          const t = truth.legVelocity;
-          const sizeOK = p[2][0].value.abs().eq(t[0].abs()) && p[2][1].value.abs().eq(t[1].abs());
+          // Right size for the true speed or the student's own speed, wrong sign.
+          const speeds = [new Frac(truth.speed), own.speed].filter(Boolean);
+          const sizeOK = speeds.some((sp) => {
+            const t = [sp.mul(leg.dx).div(leg.length), sp.mul(leg.dy).div(leg.length)];
+            return p[2][0].value.abs().eq(t[0].abs()) && p[2][1].value.abs().eq(t[1].abs());
+          });
           if (sizeOK) label = 'Check the direction sign';
         }
         break;
@@ -263,13 +267,13 @@ export function markGraph(truth, kind, sketchPoints, studentSpeed) {
   const useOwn = studentSpeed && !studentSpeed.eq(truth.speed) && studentSpeed.n > 0;
   return truePts.map((bp) => {
     const t = bp.t.isInt() ? bp.t.n : null;
-    if (t !== null && has(t, bp.v)) return { t: bp.t, v: bp.v, mark: '✓', points: 1 };
+    if (t !== null && has(t, bp.v)) return { t: bp.t, v: bp.v, mark: '✓', points: 1, at: t };
     if (useOwn) {
       const row = truth.log.find((r) => r.t.eq(bp.t));
       const ownT = new Frac(row.d).div(studentSpeed);
       // Nearest whole second, halves up.
       const rounded = Math.floor(ownT.toNumber() + 0.5 + 1e-9);
-      if (has(rounded, bp.v)) return { t: bp.t, v: bp.v, mark: '◐', points: 1 };
+      if (has(rounded, bp.v)) return { t: bp.t, v: bp.v, mark: '◐', points: 1, at: rounded };
     }
     return { t: bp.t, v: bp.v, mark: '✗', points: 0 };
   });
